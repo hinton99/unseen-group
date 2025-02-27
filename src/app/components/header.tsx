@@ -8,7 +8,6 @@ import {
   CalendarIcon,
   ChatBubbleLeftEllipsisIcon,
   ChevronDownIcon,
-  ChevronUpIcon,
   ComputerDesktopIcon,
   DocumentPlusIcon,
   PlusCircleIcon,
@@ -22,28 +21,20 @@ export default function Header() {
   const menuItems = [
     { name: "Add", icon: PlusCircleIcon },
     { name: "Scheduler", icon: CalendarIcon },
-    { name: "Documents", icon: DocumentPlusIcon,
-      submenu: [
-        {name: 'Dropdown 1'},
-        {name: 'Dropdown 2'},
-      ]
-     },
-    { name: "Dashboard", icon: ComputerDesktopIcon,
-      submenu: [
-        {name: 'Dropdown 1'},
-        {name: 'Dropdown 2'},
-      ]
-
+    {
+      name: "Documents",
+      icon: DocumentPlusIcon,
+      submenu: [{ name: "Dropdown 1" }, { name: "Dropdown 2" }],
+    },
+    {
+      name: "Dashboard",
+      icon: ComputerDesktopIcon,
+      submenu: [{ name: "Dropdown 1" }, { name: "Dropdown 2" }],
     },
     { name: "Resources", icon: BookmarkIcon },
     { name: "Accessibility", icon: QuestionMarkCircleIcon },
     { name: "Chat", icon: ChatBubbleLeftEllipsisIcon },
-    { name: "Tom Hinton", icon: UserIcon,
-      submenu: [
-        {name: 'Sign Out'},
-      ]
-
-     },
+    { name: "Tom Hinton", icon: UserIcon, submenu: [{ name: "Sign Out" }] },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -82,10 +73,10 @@ export default function Header() {
               </Link>
               <ul className="text-blue-900 absolute transition-all overflow-hidden max-h-0 opacity-0 delay-200 bg-white shadow-md group-hover:visible group-hover:opacity-100 group-hover:max-h-[9999px]">
                 {item.submenu?.map((subItem) => (
-                  <li className="px-2 py-4 hover:text-red-800 transition-all delay-200" key={subItem.name}>
-                    <Link href={'#'}>
-                      {subItem.name}
-                    </Link>
+                  <li
+                    className="px-2 py-4 hover:text-red-800 transition-all delay-200"
+                    key={subItem.name}>
+                    <Link href={"#"}>{subItem.name}</Link>
                   </li>
                 ))}
               </ul>
@@ -99,35 +90,47 @@ export default function Header() {
             <li
               key={item.name}
               className="font-semibold">
-                <div className="flex items-center">
-                  <Link
-                    className="text-blue-900 group-hover:text-red-800 transition-all delay-100 p-2 block"
-                    href={"#"}
-                    onClick={() => setIsOpen(false)}>
-                    <item.icon
-                      aria-hidden="true"
-                      className="size-6 inline-block mr-2"
+              <div className="flex items-center">
+                <Link
+                  className="text-blue-900 group-hover:text-red-800 transition-all delay-100 p-2 block"
+                  href={"#"}
+                  onClick={() => setIsOpen(false)}>
+                  <item.icon
+                    aria-hidden="true"
+                    className="size-6 inline-block mr-2"
+                  />
+                  {item.name}
+                </Link>
+                <button
+                  className="text-left p-2 flex items-center justify-between text-blue-900 hover:text-red-800"
+                  onClick={() =>
+                    setOpenSubMenu(
+                      openSubMenu === item.name
+                        ? null
+                        : item.submenu
+                        ? item.name
+                        : null
+                    )
+                  }>
+                  {item.submenu && (
+                    <ChevronDownIcon
+                      className={`size-6 transition-transform duration-300 ${
+                        openSubMenu === item.name ? "rotate-180" : ""
+                      }`}
                     />
-                    {item.name}
-                  </Link>
-                  <button
-                    className="text-left p-2 flex items-center justify-between text-blue-900 hover:text-red-800"
-                    onClick={() =>
-                      setOpenSubMenu(openSubMenu === item.name ? null : item.submenu ? item.name : null)
-                    }>
-                      {item.submenu && <span>{openSubMenu === item.name ? <ChevronUpIcon className="size-6"/> : <ChevronDownIcon className="size-6"/>}</span>}
-                    </button>
-                </div>
+                  )}{" "}
+                </button>
+              </div>
               {item.submenu && openSubMenu === item.name && (
-              <ul>
-                {item.submenu?.map((subItem) => (
-                  <li className="p-2 text-blue-900 hover:text-red-800 transition-all delay-100" key={subItem.name}>
-                    <Link href={'#'}>
-                      {subItem.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+                <ul className="pl-8">
+                  {item.submenu?.map((subItem) => (
+                    <li
+                      className="p-2 text-blue-900 hover:text-red-800 transition-all delay-100"
+                      key={subItem.name}>
+                      <Link href={"#"}>{subItem.name}</Link>
+                    </li>
+                  ))}
+                </ul>
               )}
             </li>
           ))}
