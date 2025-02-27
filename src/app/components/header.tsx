@@ -80,9 +80,9 @@ export default function Header() {
                 />
                 {item.name}
               </Link>
-              <ul className="text-blue-900 absolute transition-all delay-200 bg-white shadow-md opacity-0 group-hover:opacity-100">
+              <ul className="text-blue-900 absolute transition-all overflow-hidden max-h-0 opacity-0 delay-200 bg-white shadow-md group-hover:visible group-hover:opacity-100 group-hover:max-h-[9999px]">
                 {item.submenu?.map((subItem) => (
-                  <li className="px-2 py-4 hover:text-red-800 transition-all delay-100" key={subItem.name}>
+                  <li className="px-2 py-4 hover:text-red-800 transition-all delay-200" key={subItem.name}>
                     <Link href={'#'}>
                       {subItem.name}
                     </Link>
