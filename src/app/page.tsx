@@ -6,7 +6,6 @@ import {
   MagnifyingGlassIcon,
   UsersIcon,
 } from "@heroicons/react/16/solid";
-import Link from "next/link";
 import { DashboardButton } from "./components/dashboard-button";
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
@@ -135,12 +134,12 @@ export default function Home() {
     endDate: null,
   });
   return (
-    <div className="container mx-auto bg-white rounded-md shadow-md my-12 p-4 border">
+    <div className="container p-4 mx-auto my-12 bg-white border rounded-md shadow-md">
       <section className="pb-4">
-        <h2 className="text-xl md:text-3xl font-extrabold text-blue-900 mb-4">
+        <h2 className="mb-4 text-xl font-extrabold text-blue-900 md:text-3xl">
           Campaign Dashboard
         </h2>
-        <div className="grid grid-cols-3 gap-2 items-end">
+        <div className="grid items-end grid-cols-3 gap-2">
           <div>
             <label
               htmlFor="campaign"
@@ -161,7 +160,7 @@ export default function Home() {
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Select Dates:
             </label>
-            <div className="bg-gray-50 border-2 text-gray-900 text-sm rounded-lg focus:ring-blue-900 focus:border-blue-900 w-full block focus:outline-none">
+            <div className="block w-full text-sm text-gray-900 border-2 rounded-lg bg-gray-50 focus:ring-blue-900 focus:border-blue-900 focus:outline-none">
               <Datepicker
                 value={value}
                 onChange={(newValue) => setValue(newValue)}
@@ -170,36 +169,36 @@ export default function Home() {
           </div>
           <div className="relative">
             <input type="search" className="bg-gray-50 border-2 appearance-none text-gray-900 text-sm rounded-lg focus:ring-blue-900 focus:border-blue-900 focus:bg-white w-full block p-2.5 focus:outline-none" placeholder="Search..." />
-            <button className="absolute right-0 top-0 h-full pr-2 text-red-600">
+            <button className="absolute top-0 right-0 h-full pr-2 text-red-600">
               <MagnifyingGlassIcon className="size-6" />
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 py-4">
+        <div className="grid grid-cols-2 gap-3 py-4 md:grid-cols-4">
           <DashboardButton
             icon={
-              <UsersIcon className="size-16 text-blue-900 block mx-auto mb-2" />
+              <UsersIcon className="block mx-auto mb-2 text-blue-900 size-16" />
             }
             number={16}
             title={"Candidates"}
           />
           <DashboardButton
             icon={
-              <ChatBubbleLeftRightIcon className="size-16 text-blue-900 block mx-auto mb-2" />
+              <ChatBubbleLeftRightIcon className="block mx-auto mb-2 text-blue-900 size-16" />
             }
             number={16}
             title={"Assessors"}
           />
           <DashboardButton
             icon={
-              <AdjustmentsHorizontalIcon className="size-16 text-blue-900 block mx-auto mb-2" />
+              <AdjustmentsHorizontalIcon className="block mx-auto mb-2 text-blue-900 size-16" />
             }
             number={94}
             title={"Pending Excercise"}
           />
           <DashboardButton
             icon={
-              <CheckBadgeIcon className="size-16 text-blue-900 block mx-auto mb-2" />
+              <CheckBadgeIcon className="block mx-auto mb-2 text-blue-900 size-16" />
             }
             number={11}
             title={"Completed Excercise"}
@@ -207,21 +206,21 @@ export default function Home() {
         </div>
       </section>
       <section className="pb-4">
-        <h2 className="text-xl md:text-3xl font-extrabold text-blue-900 mb-4">
+        <h2 className="mb-4 text-xl font-extrabold text-blue-900 md:text-3xl">
           Excercise averages across all candidates
         </h2>
         {exercises.map((exercise) => (
           <div
             key={exercise.name}
-            className="p-2 bg-gray-50 mb-2 font-semibold relative block rounded-md border">
-            <div className="z-10 flex justify-between relative">
+            className="relative block p-2 mb-2 font-semibold border rounded-md bg-gray-50">
+            <div className="relative z-10 flex justify-between">
               {exercise.name}
               <span>
                 {exercise.score} / {exercise.totalScore}
               </span>
             </div>
             <div
-              className="bg-blue-100 rounded-sm absolute h-full w-full top-0 left-0"
+              className="absolute top-0 left-0 w-full h-full bg-blue-100 rounded-sm"
               style={{
                 width: `${(exercise.score / exercise.totalScore) * 100}%`,
               }}></div>
@@ -229,13 +228,13 @@ export default function Home() {
         ))}
       </section>
       <section className="pb-4">
-        <h2 className="text-xl md:text-3xl font-extrabold text-blue-900 mb-4">
+        <h2 className="mb-4 text-xl font-extrabold text-blue-900 md:text-3xl">
           Assessor Averages
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300 shadow-md">
             <thead>
-              <tr className="bg-blue-900 text-white">
+              <tr className="text-white bg-blue-900">
                 <th className="p-2 text-sm md:text-base">Assessor Name</th>
                 <th className="p-2 text-sm md:text-base">Teamwork (5)</th>
                 <th className="p-2 text-sm md:text-base">Customer Focus (5)</th>
@@ -257,8 +256,8 @@ export default function Home() {
               {assessors.map((assessor: Assessor, index) => (
                 <tr
                   key={index}
-                  className="border-gray-300 odd:bg-white even:bg-gray-100 font-semibold text-center">
-                  <td className="p-2 font-semibold text-sm md:text-base">
+                  className="font-semibold text-center border-gray-300 odd:bg-white even:bg-gray-100">
+                  <td className="p-2 text-sm font-semibold md:text-base">
                     {assessor.name}
                   </td>
                   <td

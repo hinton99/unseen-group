@@ -41,14 +41,14 @@ export default function Header() {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>();
 
   return (
-    <nav className="bg-white px-4 shadow-md sticky top-0 z-20">
-      <div className="flex justify-between items-center py-4">
+    <nav className="sticky top-0 z-20 px-4 bg-white shadow-md">
+      <div className="flex items-center justify-between py-4">
         <Image
           src={Logo}
           alt="logo"
         />
         <button
-          className="lg:hidden text-blue-900"
+          className="text-blue-900 lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu">
           {isOpen ? (
@@ -61,20 +61,20 @@ export default function Header() {
           {menuItems.map((item) => (
             <li
               key={item.name}
-              className="text-center font-semibold group">
+              className="font-semibold text-center group">
               <Link
-                className="text-blue-900 group-hover:text-red-800 transition-all delay-100 inline-block p-2"
+                className="inline-block p-2 text-blue-900 transition-all delay-100 group-hover:text-red-800"
                 href={"#"}>
                 <item.icon
                   aria-hidden="true"
-                  className="size-8 mx-auto block pb-2"
+                  className="block pb-2 mx-auto size-8"
                 />
                 {item.name}
               </Link>
               <ul className="text-blue-900 absolute transition-all overflow-hidden max-h-0 opacity-0 delay-200 bg-white shadow-md group-hover:visible group-hover:opacity-100 group-hover:max-h-[9999px]">
                 {item.submenu?.map((subItem) => (
                   <li
-                    className="px-2 py-4 hover:text-red-800 transition-all delay-200"
+                    className="px-2 py-4 transition-all delay-200 hover:text-red-800"
                     key={subItem.name}>
                     <Link href={"#"}>{subItem.name}</Link>
                   </li>
@@ -85,31 +85,31 @@ export default function Header() {
         </ul>
       </div>
       {isOpen && (
-        <ul className="lg:hidden flex flex-col pb-4">
+        <ul className="flex flex-col pb-4 lg:hidden">
           {menuItems.map((item) => (
             <li
               key={item.name}
               className="font-semibold">
               <div className="flex items-center">
                 <Link
-                  className="text-blue-900 group-hover:text-red-800 transition-all delay-100 p-2 block"
+                  className="block p-2 text-blue-900 transition-all delay-100 group-hover:text-red-800"
                   href={"#"}
                   onClick={() => setIsOpen(false)}>
                   <item.icon
                     aria-hidden="true"
-                    className="size-6 inline-block mr-2"
+                    className="inline-block mr-2 size-6"
                   />
                   {item.name}
                 </Link>
                 <button
-                  className="text-left p-2 flex items-center justify-between text-blue-900 hover:text-red-800"
+                  className="flex items-center justify-between p-2 text-left text-blue-900 hover:text-red-800"
                   onClick={() =>
                     setOpenSubMenu(
                       openSubMenu === item.name
                         ? null
                         : item.submenu
-                        ? item.name
-                        : null
+                          ? item.name
+                          : null
                     )
                   }>
                   {item.submenu && (
@@ -125,7 +125,7 @@ export default function Header() {
                 <ul className="pl-8">
                   {item.submenu?.map((subItem) => (
                     <li
-                      className="p-2 text-blue-900 hover:text-red-800 transition-all delay-100"
+                      className="p-2 text-blue-900 transition-all delay-100 hover:text-red-800"
                       key={subItem.name}>
                       <Link href={"#"}>{subItem.name}</Link>
                     </li>

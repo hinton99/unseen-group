@@ -8,15 +8,15 @@ import { EnvelopeIcon, QuestionMarkCircleIcon } from '@heroicons/react/16/solid'
 export const Footer = () => {
   return (
     <>
-    <div className="bg-gray-100 p-4">
+    <div className="p-4 bg-gray-100">
       <div className="container mx-auto">
       <Image
         src={Logo}
         alt="logo"
       />
-      <div className="text-sm text-center pt-2">
+      <div className="pt-2 text-sm text-center">
         <p className='pb-1'>2025 All Rights Reserved. Powered by <Link className="text-blue-900 hover:text-red-600" href={'#'}>TopScore Technologies Ltd</Link> Since 2017</p>
-        <p><Link className="text-blue-900 hover:text-red-600" href={'#'}><EnvelopeIcon className="size-5 inline"/> Contact Us</Link> | <Link className="text-blue-900 hover:text-red-600" href={'#'}><QuestionMarkCircleIcon className="size-5 inline"/> FAQs</Link></p>
+        <p><Link className="text-blue-900 hover:text-red-600" href={'#'}><EnvelopeIcon className="inline size-5"/> Contact Us</Link> | <Link className="text-blue-900 hover:text-red-600" href={'#'}><QuestionMarkCircleIcon className="inline size-5"/> FAQs</Link></p>
       </div>
       </div>
     </div>

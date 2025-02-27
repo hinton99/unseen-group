@@ -8,11 +8,11 @@ export interface dashboardButtonProps {
 
 export const DashboardButton = (props: dashboardButtonProps) => {
   return (
-		<div className="items-center px-4 py-6 shadow-md rounded-md border-2">
+		<div className="items-center px-4 py-6 border-2 rounded-md shadow-md">
 			{props.icon}
 			<div className="text-center">
-				<h3 className="text-xl md:text-3xl font-semibold">{props.number}</h3>
-				<h4 className="md:text-xl font-semibold">{props.title}</h4>
+				<h3 className="text-xl font-semibold md:text-3xl">{props.number}</h3>
+				<h4 className="font-semibold md:text-xl">{props.title}</h4>
 			</div>
 		</div>
 )
